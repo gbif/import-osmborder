@@ -6,14 +6,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       unzip \
       sqlite3 \
       ca-certificates \
+      xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O pgfutter https://github.com/lukasmartinelli/pgfutter/releases/download/v1.1/pgfutter_linux_amd64 \
+RUN wget --progress=dot:mega -O pgfutter https://github.com/lukasmartinelli/pgfutter/releases/download/v1.1/pgfutter_linux_amd64 \
  && chmod +x pgfutter \
  && mv pgfutter /usr/local/bin/
 
 RUN mkdir -p $IMPORT_DIR \
-    && wget -O $IMPORT_DIR/osmborder_lines.csv https://github.com/openmaptiles/import-osmborder/releases/download/v0.1/osmborder_lines.csv
+    && wget --progress=dot:giga -O $IMPORT_DIR/osmborder_lines_3857.csv.xz http://maps.labs.gbif.org/osmborder/osmborder_lines_3857.csv.xz \
+    && wget --progress=dot:giga -O $IMPORT_DIR/osmborder_lines_4326.csv.xz http://maps.labs.gbif.org/osmborder/osmborder_lines_4326.csv.xz
 
 WORKDIR /usr/src/app/
 COPY . /usr/src/app/

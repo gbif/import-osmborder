@@ -34,8 +34,13 @@ Now upload the generated CSV to GitHub releases and update the reference link in
 
 The **import-osmborder** will import the embedded CSV into the database.
 
+### Projection
+
+Set `PROJECTION="3857"` to import the standard Web Mercator borders.  Set to `4326` to import WGS84 borders.
+
 ```bash
 docker run --rm \
+    -e PROJECTION="3857" \
     -e POSTGRES_USER="osm" \
     -e POSTGRES_PASSWORD="osm" \
     -e POSTGRES_HOST="127.0.0.1" \
@@ -43,4 +48,3 @@ docker run --rm \
     -e POSTGRES_PORT="5432" \
     openmaptiles/import-osmborder
 ```
-
