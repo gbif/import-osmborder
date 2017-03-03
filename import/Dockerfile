@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       sqlite3 \
       ca-certificates \
       xz-utils \
+      bc \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget --progress=dot:mega -O pgfutter https://github.com/lukasmartinelli/pgfutter/releases/download/v1.1/pgfutter_linux_amd64 \
