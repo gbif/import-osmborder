@@ -10,9 +10,9 @@ function create_borders() {
     local csv_file="$IMPORT_DIR/osmborder_lines.csv"
 
     echo "Filter $pbf_file"
-    osmborder_filter -o "$filtered_file" "$pbf_file"
+    [[ -e "$filtered_file" ]] || osmborder_filter -v -o "$filtered_file" "$pbf_file"
     echo "Create border lines in $csv_file"
-    osmborder -o "$csv_file" "$filtered_file"
+    osmborder -v -o "$csv_file" "$filtered_file"
 }
 
 function create_borders_with_first_pbf() {

@@ -15,7 +15,7 @@ RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A4
     ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/pnorman/osmborder.git /usr/src/osmborder
+RUN git clone https://github.com/MattBlissett/osmborder.git /usr/src/osmborder
 WORKDIR /usr/src/osmborder/build
 RUN cmake .. && make && make install
 
